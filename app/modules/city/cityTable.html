@@ -1,0 +1,39 @@
+<section layout-margin flex>
+    <div layout="row" layout-align="center center">
+        <md-content layout-padding flex layout="column" class="elevate" layout-margin>
+            <div layout="row" layout-align="end center">
+                <label>Current page: {{vm.pagination.currentPage}}</label>
+                <md-button class="md-primary" ng-click="vm.pagination.navigate()" ng-show="vm.pagination.currentPage != 1">Previous</md-button>
+                <md-button class="md-primary" ng-click="vm.pagination.navigate(1)">Next</md-button>
+                <md-input-container>
+                    <label>Cities per page</label>
+                    <md-select ng-model="vm.pagination.perPage" ng-change="vm.getCities()">
+                        <md-option ng-repeat="number in vm.pagination.numbers" value="{{number}}">
+                            {{number}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <table flex>
+                <thead>
+                    <tr>
+                        <th ng-click="vm.pagination.sort('city')">City</th>
+                        <th ng-click="vm.pagination.sort('state')">State</th>
+                        <th ng-click="vm.pagination.sort('population')">Population</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="city in vm.cities">
+                    <td ng-bind="city.city" align="center"></td>
+                    <td ng-bind="city.state" align="center"></td>
+                    <td ng-bind="city.population" align="center"></td>
+                    <td ng-bind="city.location" align="center"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </md-content>
+
+    </div>
+</section>
